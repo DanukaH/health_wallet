@@ -68,3 +68,5 @@ group :test do
 end
 
 gem "mongoid"
+gem "nokogiri", ">= 1.19.4"
+gem "rack", ">= 3.2.6"
