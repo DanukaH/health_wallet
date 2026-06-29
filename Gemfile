@@ -70,3 +70,4 @@ end
 gem "mongoid"
 gem "nokogiri", ">= 1.19.4"
 gem "rack", ">= 3.2.6"
+gem "rack-session", ">= 2.1.2"
