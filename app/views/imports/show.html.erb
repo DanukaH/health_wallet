@@ -1,0 +1,38 @@
+<div class="imports-container">
+  <div class="imports-header">
+    <%= link_to "← Back to Imports", imports_path, class: "back-link" %>
+    <h1>Import: <%= @import.filename %></h1>
+  </div>
+
+  <% if notice %>
+    <div class="flash-notice"><%= notice %></div>
+  <% end %>
+
+  <div class="import-status">
+    <span class="status-label">Status</span>
+    <span class="status-badge status-<%= @import.status %>"><%= @import.status.capitalize %></span>
+  </div>
+
+  <% if @import.completed? %>
+    <div class="import-summary">
+      <div class="summary-item"><span><%= @import.patients_imported %></span> patients created</div>
+      <div class="summary-item"><span><%= @import.assessments_imported %></span> assessments created</div>
+      <div class="summary-item"><span><%= @import.observations_imported %></span> observations imported</div>
+      <div class="summary-item"><span><%= @import.observations_skipped %></span> observations skipped (unknown code)</div>
+    </div>
+  <% end %>
+
+  <% if @import.failed? && @import.error_message.present? %>
+    <div class="import-error">
+      <strong>Import failed:</strong>
+      <p><%= @import.error_message %></p>
+    </div>
+  <% end %>
+
+  <% if @import.pending? || @import.processing? %>
+    <p class="imports-intro">
+      This import is still being processed. Refresh this page to see the latest status.
+    </p>
+    <%= link_to "Refresh", import_path(@import), class: "btn btn-secondary" %>
+  <% end %>
+</div>

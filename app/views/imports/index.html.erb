@@ -1,0 +1,38 @@
+<div class="imports-container">
+  <div class="imports-header">
+    <%= link_to "← Home", root_path, class: "back-link" %>
+    <div class="header-row">
+      <h1>Lab Result Imports</h1>
+      <%= link_to "New Import", new_import_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <% if notice %>
+    <div class="flash-notice"><%= notice %></div>
+  <% end %>
+
+  <% if @imports.any? %>
+    <table class="imports-table">
+      <thead>
+        <tr>
+          <th>File</th>
+          <th>Status</th>
+          <th>Imported</th>
+          <th>Uploaded</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @imports.each do |import| %>
+          <tr>
+            <td><%= link_to import.filename, import_path(import), class: "import-link" %></td>
+            <td><span class="status-badge status-<%= import.status %>"><%= import.status.capitalize %></span></td>
+            <td><%= import.observations_imported %> obs / <%= import.assessments_imported %> assessments</td>
+            <td><%= import.created_at&.strftime("%Y-%m-%d %H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="no-imports">No imports yet.</div>
+  <% end %>
+</div>

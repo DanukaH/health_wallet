@@ -1,6 +1,10 @@
 <div class="patients-container">
   <h1>Patients</h1>
 
+  <div class="patients-actions">
+    <%= link_to "Import Lab Results", imports_path, class: "patient-link" %>
+  </div>
+
   <div class="patients-summary">
     Showing <%= @patients.count %> of <%= @total_count %> patients
   </div>

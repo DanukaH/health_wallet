@@ -1,0 +1,27 @@
+<div class="imports-container">
+  <div class="imports-header">
+    <%= link_to "← Back to Imports", imports_path, class: "back-link" %>
+    <h1>Import Lab Results</h1>
+  </div>
+
+  <% if alert %>
+    <div class="flash-alert"><%= alert %></div>
+  <% end %>
+
+  <p class="imports-intro">
+    Upload a simplified HL7 lab-result file. The file will be processed in the
+    background and the imported observations will appear on each patient's
+    assessment page.
+  </p>
+
+  <%= form_with url: imports_path, method: :post, multipart: true, class: "import-form" do |form| %>
+    <div class="form-group">
+      <%= form.label :file, "HL7 file (.txt)", class: "form-label" %>
+      <%= file_field_tag :file, accept: ".txt,text/plain", class: "form-input" %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "Upload and Import", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
