@@ -8,7 +8,7 @@ module Hl7
   class Importer
     Result = Struct.new(:patients, :assessments, :observations, :skipped, keyword_init: true)
 
-    SEX_AT_BIRTH_MAP = { 'M' => 'Male', 'F' => 'Female' }.freeze
+    SEX_AT_BIRTH_MAP = { "M" => "Male", "F" => "Female" }.freeze
 
     def initialize(content)
       @content = content
